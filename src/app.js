@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import { config } from './config.js';
 import { db } from './db/index.js';
+import { DEMO_STUDENT } from './db/seed.js';
 import { securityHeaders, csrfGuard } from './middleware/security.js';
 import { loadSession, requireAuth } from './middleware/auth.js';
 import { errorHandler, apiNotFound } from './middleware/errors.js';
@@ -32,7 +33,13 @@ export function createApp() {
 
   app.use('/api', loadSession, csrfGuard);
   app.get('/api/config', (_req, res) => {
-    res.json({ timezone: config.timezone, policy: config.policy });
+    const demo = config.publicDemo && config.seedDemo
+      ? {
+          student: { email: DEMO_STUDENT.email, password: DEMO_STUDENT.password },
+          admin: { email: config.adminEmail, password: config.adminPassword },
+        }
+      : null;
+    res.json({ timezone: config.timezone, policy: config.policy, demo });
   });
   app.use('/api/auth', authRoutes);
   app.use('/api/resources', resourceRoutes);

@@ -19,6 +19,8 @@ export const config = {
   adminEmail: (env.ADMIN_EMAIL || 'admin@slotwise.app').toLowerCase(),
   adminPassword: env.ADMIN_PASSWORD || 'Admin@123',
   seedDemo: env.SEED_DEMO !== 'false',
+  // When true, the login page lists the demo accounts (for public demos only).
+  publicDemo: env.PUBLIC_DEMO === 'true',
   jobIntervalMs: Number(env.JOB_INTERVAL_MS) || 60_000,
 
   // Booking policy. These rules are what keep the schedule fair to everyone.
