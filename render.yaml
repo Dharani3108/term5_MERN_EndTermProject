@@ -1,0 +1,31 @@
+# One-click deployment on Render (https://render.com) via "New > Blueprint".
+# The free plan has an ephemeral disk: the database is re-seeded with demo
+# data whenever the service restarts. Attach a persistent disk on a paid
+# plan (see the commented block) to keep data permanently.
+services:
+  - type: web
+    name: slotwise
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: NODE_ENV
+        value: production
+      - key: CAMPUS_TZ
+        value: Asia/Kolkata
+      - key: SEED_DEMO
+        value: "true"
+      - key: PUBLIC_DEMO
+        value: "true"
+      - key: ADMIN_EMAIL
+        value: admin@slotwise.app
+      - key: ADMIN_PASSWORD
+        sync: false # set this in the Render dashboard; never commit it
+    # disk:
+    #   name: slotwise-data
+    #   mountPath: /var/data
+    # (then add an env var DB_PATH=/var/data/slotwise.db)
