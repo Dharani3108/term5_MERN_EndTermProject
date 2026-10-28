@@ -4,8 +4,8 @@
 
 SlotWise lets students find and book study rooms, meeting rooms, labs, equipment and sports courts on a live schedule. It enforces fair-use rules, releases rooms that nobody shows up for, and automatically hands freed time to the people waiting for it. Administrators get tools to manage spaces, plan closures and see how the campus is actually used.
 
-> Live demo: **`<add your deployed URL here>`**
-> Demo video: **`<add your video link here>`**
+> Live demo: **`https://slotwise-fmlq.onrender.com`**
+> Demo video: **`(https://drive.google.com/file/d/1G5a4pDL6hu-b8hUnYYy0OVu1C14tuOz9/view?usp=sharing)`**
 
 ---
 
@@ -197,8 +197,9 @@ npm run db:reset   # delete the local database and re-seed it
 
 1. Push this repository to GitHub.
 2. In Render choose **New > Blueprint** and select the repository. `render.yaml` configures everything.
-3. When prompted, set `ADMIN_PASSWORD`.
-4. Open the generated `https://<name>.onrender.com` URL.
+3. Open the generated `(https://slotwise-fmlq.onrender.com)` URL.
+
+
 
 The free plan has an ephemeral disk and sleeps when idle. The database is re-seeded with fresh demo data after each restart, which keeps the public demo clean. For permanent data, attach a persistent disk and set `DB_PATH` to a path on it, as shown in `render.yaml`.
 
